@@ -181,7 +181,12 @@ public static class WasapiPlayer {
 
         byte[] playData = Resample(file, dataOffset, dataSize, srcFmt, dstFmt, dstFloat);
         int frameBytes = dstFmt.nBlockAlign;
-        int totalFrames = playData.Length / frameBytes;
+        // Append trailing silence so the short sound keeps the audio stream
+        // alive long enough for Bluetooth A2DP to establish its link.
+        int silenceFrames = (int)(dstFmt.nSamplesPerSec * 1.5);
+        byte[] fullData = new byte[playData.Length + silenceFrames * frameBytes];
+        Buffer.BlockCopy(playData, 0, fullData, 0, playData.Length);
+        int totalFrames = fullData.Length / frameBytes;
         int framesWritten = 0;
 
         audioClient.Start();
@@ -195,7 +200,7 @@ public static class WasapiPlayer {
                 if (toWrite <= 0) { Thread.Sleep(5); continue; }
                 IntPtr buf;
                 renderClient.GetBuffer(toWrite, out buf);
-                Marshal.Copy(playData, framesWritten * frameBytes, buf, toWrite * frameBytes);
+                Marshal.Copy(fullData, framesWritten * frameBytes, buf, toWrite * frameBytes);
                 renderClient.ReleaseBuffer(toWrite, 0);
                 framesWritten += toWrite;
             }
