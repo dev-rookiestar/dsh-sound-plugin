@@ -1,6 +1,8 @@
 # dsh-sound-plugin
 
-> 如何在 DeepSeek Harness 工作时去做别的事？你只需要这款插件——在它需要你的时候，用一声系统提示音把你召回。
+[中文](README.zh-CN.md) | English
+
+> Want to do something else while DeepSeek Harness works for you? Just install this plugin — it calls you back with a system sound the moment it needs you.
 
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that plays a system sound when:
 
