@@ -29,6 +29,12 @@ dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.g
 
 然后重启 DSH（或重载 profile），打开 **设置 → 通用** 即可看到两个开关。
 
+## 什么是 profile
+
+**profile** 是一个有名字的、独立的环境，各有各的插件和配置——就像浏览器的「多用户档案」（每个人物有各自的扩展）。profile 存放在 `~/.dsh/profiles/<name>` 目录下。
+
+用 `--profile <name>` 安装，就是把插件装进那一个环境；不同 profile 可以装不同的插件、互不干扰。
+
 ## 系统要求
 
 - DeepSeek Harness `>=0.2.0 <0.3.0`（在 `0.2.1-rc.3` 上开发并测试）。

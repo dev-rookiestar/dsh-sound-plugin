@@ -29,6 +29,12 @@ Replace `<name>` with your profile name:
 
 Then restart DSH (or reload the profile) and open **Settings → General** to see the two toggles.
 
+## What is a profile?
+
+A **profile** is a named, independent environment with its own plugins and settings — like a browser profile (each has its own extensions). Profiles live under `~/.dsh/profiles/<name>`.
+
+Installing with `--profile <name>` adds the plugin to that environment only, so different profiles can hold different plugin sets without interfering.
+
 ## Requirements
 
 - DeepSeek Harness `>=0.2.0 <0.3.0` (developed and tested on `0.2.1-rc.3`).
