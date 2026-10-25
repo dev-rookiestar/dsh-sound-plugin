@@ -21,6 +21,12 @@ dsh plugin --profile <name> add github:rookie/dsh-sound-plugin
 dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.git
 ```
 
+把 `<name>` 换成你的 profile 名：
+
+- **桌面版**：`desktop`（需先完全退出桌面应用——其 profile 由 Electron 应用独占管理）。
+- **Web 版**：`web`。
+- 或任意自定义名字，如 `my-profile`。
+
 然后重启 DSH（或重载 profile），打开 **设置 → 通用** 即可看到两个开关。
 
 ## 系统要求

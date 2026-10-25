@@ -21,6 +21,12 @@ dsh plugin --profile <name> add github:rookie/dsh-sound-plugin
 dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.git
 ```
 
+Replace `<name>` with your profile name:
+
+- **Desktop** app: `desktop` (quit the app first — its profile is managed exclusively by the Electron application).
+- **Web** app: `web`.
+- Or any custom name, e.g. `my-profile`.
+
 Then restart DSH (or reload the profile) and open **Settings → General** to see the two toggles.
 
 ## Requirements
