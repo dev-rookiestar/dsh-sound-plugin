@@ -118,18 +118,15 @@ export function apply(ctx, config) {
     if (fieldEnabled(config, field) !== false) playSystemSound();
   };
 
-  // Completion sound: play once after every agent (main turn + subagents)
-  // has gone idle.
-  const running = new Set();
+  // Completion sound: play when the root (main) agent goes idle — its whole
+  // turn, including any subagents, has then finished. Tracking only roots
+  // avoids a stale-agent leak that could permanently stop the sound.
   ctx.on(
     "agent/status",
     ({ agent, status }) => {
-      if (status === "running") {
-        running.add(agent.id);
-        return;
-      }
-      running.delete(agent.id);
-      if (running.size === 0) {
+      if (status !== "idle") return;
+      const roots = ctx.agents?.roots() ?? [];
+      if (roots.some((root) => root.id === agent.id)) {
         maybePlay("completion");
       }
     },
