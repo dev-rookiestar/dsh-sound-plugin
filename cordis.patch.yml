@@ -1,0 +1,3 @@
+- insert:
+    - id: sound-plugin
+      name: '@rookie/dsh-sound-plugin'

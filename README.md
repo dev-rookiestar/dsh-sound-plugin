@@ -1,0 +1,40 @@
+# dsh-sound-plugin
+
+> 如何在 DeepSeek Harness 工作时去做别的事？你只需要这款插件——在它需要你的时候，用一声系统提示音把你召回。
+
+A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that plays a system sound when:
+
+- the AI **finishes responding** (completion sound), and/or
+- a **pending approval** or **user question** appears (approval reminder).
+
+Each is an independent toggle in **Settings → General**.
+
+## Install
+
+```bash
+# GitHub shorthand
+dsh plugin --profile <name> add github:rookie/dsh-sound-plugin
+
+# or full git URL
+dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.git
+```
+
+Then restart DSH (or reload the profile) and open **Settings → General** to see the two toggles.
+
+## Requirements
+
+- DeepSeek Harness `>=0.2.0 <0.3.0` (developed and tested on `0.2.1-rc.3`).
+- Sound playback uses a system command:
+  - **Windows**: PowerShell (`System.Media.SoundPlayer`) — built in.
+  - **macOS**: `afplay` — built in.
+  - **Linux**: `paplay` (PulseAudio / PipeWire). Install `pulseaudio-utils` if `paplay` is missing.
+
+## How it works
+
+- **Completion sound**: listens to `agent/status` and plays once after every agent (the main turn plus any subagents) has gone idle.
+- **Approval reminder**: listens to the session event feed for `approval/asked` and `ask_user_question` tool calls.
+- The "ding-dong" WAV is generated in memory (no bundled audio file) and played through the default audio device.
+
+## License
+
+[MIT](LICENSE)

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Sound reminders",
+    "description": "Plays a system sound when the AI finishes responding or a pending approval appears; each can be toggled independently."
+  }
+}
