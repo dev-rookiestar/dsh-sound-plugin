@@ -15,10 +15,10 @@ Each is an independent toggle in **Settings → General**.
 
 ```bash
 # GitHub shorthand
-dsh plugin --profile <name> add github:rookie/dsh-sound-plugin
+dsh plugin --profile <name> add github:dev-rookiestar/dsh-sound-plugin
 
 # or full git URL
-dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.git
+dsh plugin --profile <name> add git+https://github.com/dev-rookiestar/dsh-sound-plugin.git
 ```
 
 Replace `<name>` with your profile name:

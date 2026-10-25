@@ -15,10 +15,10 @@
 
 ```bash
 # GitHub 简写
-dsh plugin --profile <name> add github:rookie/dsh-sound-plugin
+dsh plugin --profile <name> add github:dev-rookiestar/dsh-sound-plugin
 
 # 或完整 git 地址
-dsh plugin --profile <name> add git+https://github.com/rookie/dsh-sound-plugin.git
+dsh plugin --profile <name> add git+https://github.com/dev-rookiestar/dsh-sound-plugin.git
 ```
 
 把 `<name>` 换成你的 profile 名：

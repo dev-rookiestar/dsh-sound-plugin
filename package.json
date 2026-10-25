@@ -1,5 +1,5 @@
 {
-  "name": "@rookie/dsh-sound-plugin",
+  "name": "@dev-rookiestar/dsh-sound-plugin",
   "version": "1.0.0",
   "description": "Plays a system sound when the AI finishes responding or a pending approval appears in DeepSeek Harness.",
   "type": "module",

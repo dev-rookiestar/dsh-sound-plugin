@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-  id: "@rookie/dsh-sound-plugin",
+  id: "@dev-rookiestar/dsh-sound-plugin",
   factory(require) {
     const React = require("react");
     const h = React.createElement;
