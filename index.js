@@ -1,8 +1,11 @@
 import { spawn } from "node:child_process";
 import { writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import z from "@deepseek-ai/schemastery";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const Config = z.object({
   completion: z.boolean().default(true).volatile(),
@@ -60,16 +63,20 @@ function buildDingWav() {
 function playbackCommand(wavPath) {
   switch (process.platform) {
     case "win32": {
-      const psPath = wavPath.replace(/'/g, "''");
+      const scriptPath = join(__dirname, "wasapi-play.ps1");
       return {
         command: "powershell.exe",
         args: [
           "-NoProfile",
           "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
           "-WindowStyle",
           "Hidden",
-          "-Command",
-          `(New-Object System.Media.SoundPlayer '${psPath}').PlaySync()`,
+          "-File",
+          scriptPath,
+          "-Path",
+          wavPath,
         ],
         options: { windowsHide: true },
       };

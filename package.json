@@ -11,7 +11,7 @@
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
   },
-  "files": ["index.js", "client.js", "cordis.patch.yml", "locale/*.json", "icon.svg"],
+  "files": ["index.js", "client.js", "cordis.patch.yml", "wasapi-play.ps1", "locale/*.json", "icon.svg"],
   "peerDependencies": {
     "@deepseek-ai/schemastery": "~3.18.5"
   },
