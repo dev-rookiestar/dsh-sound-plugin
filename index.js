@@ -118,20 +118,23 @@ export function apply(ctx, config) {
     if (fieldEnabled(config, field) !== false) playSystemSound();
   };
 
-  // Completion sound: play when the root (main) agent goes idle — its whole
-  // turn, including any subagents, has then finished. Tracking only roots
-  // avoids a stale-agent leak that could permanently stop the sound.
-  ctx.on(
-    "agent/status",
-    ({ agent, status }) => {
-      if (status !== "idle") return;
-      const roots = ctx.agents?.roots() ?? [];
-      if (roots.some((root) => root.id === agent.id)) {
-        maybePlay("completion");
-      }
-    },
-    { global: true },
-  );
+  // Completion sound: inject the `agents` service, then play when a root
+  // (main) agent goes idle — its whole turn, including any subagents, has
+  // then finished. Tracking only roots avoids a stale-agent leak that could
+  // permanently stop the sound.
+  ctx.inject(["agents"], (child) => {
+    ctx.on(
+      "agent/status",
+      ({ agent, status }) => {
+        if (status !== "idle") return;
+        const roots = child.agents.roots();
+        if (roots.some((root) => root.id === agent.id)) {
+          maybePlay("completion");
+        }
+      },
+      { global: true },
+    );
+  });
 
   // Approval reminder: play when a permission approval or a user question is
   // asked. Detected from the durable session event feed, which reaches a
